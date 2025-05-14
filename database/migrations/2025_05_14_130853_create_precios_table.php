@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('precios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('prec_producto');
-            $table->foreign('prec_producto')->references('id')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('prec_producto')->references('id')->on('productos')->onUpdate('cascade')->onDelete('cascade');
             $table->double('prec_costo')->nullable();
             $table->double('prec_unitario')->nullable();
             $table->double('prec_total')->nullable();   
