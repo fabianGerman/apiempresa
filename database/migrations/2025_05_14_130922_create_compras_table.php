@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('comp_stock');
-            $table->foreign('comp_stock')->references('id')->on('stocks')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('comp_proveedor');
+            $table->unsignedBigInteger('comp_detcomp');
+            $table->foreign('comp_detcomp')->references('id')->on('compra_detalles')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('comp_impuesto');
+            $table->foreign('comp_impuesto')->references('id')->on('impuestos')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('comp_tipopago')->nullable();
+            $table->integer('comp_cantidadcomprada')->nullable();
+            $table->double('comp_subtotal')->nullable();
+            $table->double('comp_total')->nullable();
             $table->timestamps();
         });
     }
