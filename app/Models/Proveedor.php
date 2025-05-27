@@ -13,18 +13,17 @@ class Proveedor extends Model
         'prov_direccion'
     ];
 
-    public static function listar_proeedores(){
-        return $result = DB::table('proveedors as prov')
-            ->select(
-                'prov.prov_cuit',
-                'prov.prov_nombre',
-                'prov.prov_telefono',
-                'prov.prov_direccion'
+    public static function listar_proveedores(){
+        return $result = Proveedor::select(
+                'proveedors.prov_cuit',
+                'proveedors.prov_nombre',
+                'proveedors.prov_telefono',
+                'proveedors.prov_direccion'
             )
             ->paginate(5);
     }
 
-    public static function agregar_prestador($cuit,$nombre,$telefono,$direccion){   
+    public static function agregar_proveedor($cuit,$nombre,$telefono,$direccion){   
         if(is_array($nombre) && !empty($nombre)){
             $nombre = $nombre['nombre'];
         }else{
@@ -60,14 +59,14 @@ class Proveedor extends Model
             ->delete();
     }
 
-    public static function buscar_proeedor(){
-        return $result = DB::table('proveedors as prov')
+    public static function buscar_proeedor($id){
+        return $result = Proveedor::where('id',$id)    
             ->select(
-                'prov.prov_cuit',
-                'prov.prov_nombre',
-                'prov.prov_telefono',
-                'prov.prov_direccion'
-            )
+                    'proveedors.prov_cuit',
+                    'proveedors.prov_nombre',
+                    'proveedors.prov_telefono',
+                    'proveedors.prov_direccion'
+                )
             ->paginate(5);
     }
 }
